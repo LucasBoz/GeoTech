@@ -30,7 +30,25 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 var insert = 'INSERT INTO marker (name, color, lat, lng) VALUES (?,?,?,?)'
                 db.run(insert, ["Ponto 1","blue","-54", -"24"])
                 db.run(insert, ["Ponto 2","red","-55", -"23"])
-                db.run(insert, ["Ponto 3","#ffffff","-56", -"22"])
+                db.run(insert, ["Ponto 3","#purple","-22", "-54"])
+                db.run(insert, ["Ponto 3","#42f56c","-23", "-53"])
+                db.run(insert, ["Ponto 3","#42f56c","-24", "-52"])
+                db.run(insert, ["Ponto 3","#42f56c","-25", "-51"])
+                db.run(insert, ["Ponto 3","#42f56c","-26", "-50"])
+                db.run(insert, ["Ponto 3","#42f56c","-27", "-49"])
+                db.run(insert, ["Ponto 3","#42f56c","-28", "-48"])
+                db.run(insert, ["Ponto 3","#42f56c","-29", "-47"])
+                db.run(insert, ["Ponto 3","#42f56c","-30", "-45"])
+                db.run(insert, ["Ponto 3","#42f56c","-22", "-46"])
+                db.run(insert, ["Ponto 3","#42f56c","-23", "-47"])
+                db.run(insert, ["Ponto 3","#42f56c","-24", "-48"])
+                db.run(insert, ["Ponto 3","#42f56c","-25", "-49"])
+                db.run(insert, ["Ponto 3","#42f56c","-26", "-50"])
+                db.run(insert, ["Ponto 3","#42f56c","-27", "-51"])
+                db.run(insert, ["Ponto 3","#42f56c","-28", "-52"])
+                db.run(insert, ["Ponto 3","#42f56c","-29", "-53"])
+                db.run(insert, ["Ponto 3","#42f56c","-30", "-54"])
+ 
             }
         });  
 

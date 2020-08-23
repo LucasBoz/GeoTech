@@ -79,6 +79,8 @@ angular.module('myApp.home', ['ngRoute'])
 
         $('#myModal').modal('show')
 
+        $('.toast').toast('hide');
+
         $scope.$apply();
 
       }
@@ -123,12 +125,6 @@ angular.module('myApp.home', ['ngRoute'])
 
       return description;
     }
-
-
-
-    $('.toast').toast('show');
-
-
 
 
 

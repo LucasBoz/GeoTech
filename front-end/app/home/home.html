@@ -1,13 +1,28 @@
-<div class="homePage">
-
-    <div style="background-color: green; width: 300px;">
-
-        <button type="button" ng-click="addMarker()" class="btn btn-primary">Adicionar ponto</button>
+<div style="height: 100%; margin: 0; " class="row" >
 
 
-        <div class="list-group">
+    <!-- MENU -->
+    <div style="width: 400px;">
+
+
+        <div class="row" style="justify-content: space-around; margin: 10px 10px 0 0;">
+
+            <div class="form-group col-auto">
+                <input type="text" class="form-control" ng-model="nameSearch"
+                    placeholder="Procurar">
+            </div>
+
+            <div class="">
+
+                <button type="button" ng-click="addMarker()" class="btn btn-primary " >Adicionar ponto</button>
+            </div>
+
+        </div>
+
+
+        <div class="list-group overflow-auto">
             <button type="button" ng-click="focusMarker(marker)" class="list-group-item list-group-item-action "
-                ng-repeat="marker in markerList">
+                ng-repeat="marker in markerList | filter: nameSearch">
 
                 <div class="row col-12" style="justify-content: space-between;">
 
@@ -28,11 +43,15 @@
 
     </div>
 
-    <div style="background-color: blue; width: 100%;">
-        <div id="map" style="height: 100%;"></div>
+    <!-- MAP -->
+    <div class="col" style="padding: 0;">
+        <div id="map" style="height: 100%; "></div>
     </div>
 
+
+
 </div>
+
 
 
 
@@ -110,39 +129,20 @@
     </div>
 </div>
 
-<!-- TOAST -->
-<!-- <div id="toast" class="toast" role="alert" aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-    <div class="toast-body">
-        Hello, world! This is a toast message.
-    </div>
-</div> -->
 
-<!-- Flexbox container for aligning the toasts -->
-<div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+
+<!-- toasts -->
+<div aria-live="polite" aria-atomic="true" style="position: fixed; z-index: 500;">
     <!-- Position it -->
-    <div style="position: absolute; top: 0; right: 0;">
+    <div style="position: fixed; top: 25px; right: 30%;">
 
         <!-- Then put toasts within -->
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
 
-            <div class="toast-body">
-                Clique no mapa para adicionar
+            <div class="toast-body" style="font-size: 18px;">
+                Clique no mapa para adicionar o ponto
             </div>
         </div>
 
     </div>
 </div>
-
-
-<style type="text/css">
-    .homePage {
-        height: 400px;
-        background-color: purple;
-        display: flex;
-
-    }
-
-    .homePage>div {
-        height: 100%;
-    }
-</style>
