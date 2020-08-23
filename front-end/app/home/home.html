@@ -4,6 +4,28 @@
 
         <button type="button" ng-click="addMarker()" class="btn btn-primary">Adicionar ponto</button>
 
+
+        <div class="list-group">
+            <button type="button" ng-click="focusMarker(marker)" class="list-group-item list-group-item-action "
+                ng-repeat="marker in markerList">
+
+                <div class="row col-12" style="justify-content: space-between;">
+
+                    <div class="col-auto">
+                        {{marker.name}}
+                    </div>
+
+                    <div class="col-1">
+                        <div
+                            style="height: 25px; width: 25px; border-radius: 50%; background-color: {{marker.color}}; float: left;">
+                        </div>
+                    </div>
+
+                </div>
+
+            </button>
+        </div>
+
     </div>
 
     <div style="background-color: blue; width: 100%;">
@@ -50,7 +72,7 @@
                     </div>
                     <div class="form-group">
                         <label for="color">Cor</label>
-                        <input type="color" class="form-control col-6" id="color" ng-model="marker.color"
+                        <input type="color" class="form-control col-6" id="color" ng-model="marker.color" value="blue"
                             placeholder="Another input placeholder">
                     </div>
 
@@ -102,44 +124,25 @@
 
         <!-- Then put toasts within -->
         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="..." class="rounded mr-2" alt="...">
-                <strong class="mr-auto">Bootstrap</strong>
-                <small class="text-muted">just now</small>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+
             <div class="toast-body">
-                See? Just like this.
+                Clique no mapa para adicionar
             </div>
         </div>
 
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="..." class="rounded mr-2" alt="...">
-                <strong class="mr-auto">Bootstrap</strong>
-                <small class="text-muted">2 seconds ago</small>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                Heads up, toasts will stack automatically
-            </div>
-        </div>
     </div>
+</div>
 
 
-    <style type="text/css">
-        .homePage {
-            height: 400px;
-            background-color: purple;
-            display: flex;
+<style type="text/css">
+    .homePage {
+        height: 400px;
+        background-color: purple;
+        display: flex;
 
-        }
+    }
 
-        .homePage>div {
-            height: 100%;
-        }
-    </style>
+    .homePage>div {
+        height: 100%;
+    }
+</style>

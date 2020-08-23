@@ -10,7 +10,7 @@ angular.module('myApp.home', ['ngRoute'])
     });
   }])
 
-  .controller('HomeCtrl', ['$scope', function ($scope) {
+  .controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
 
 
     /**
@@ -20,6 +20,24 @@ angular.module('myApp.home', ['ngRoute'])
     var markerList = [];
 
     $scope.marker = {}
+
+
+
+    /**
+     * INIT
+     */
+
+    $http.get('http://localhost:8005/api/marker').then(function (response) {
+      $scope.markerList = response.data.data;
+
+      $scope.markerList.forEach(marker => {
+        showMarkerOnMap(marker);
+      });
+
+
+    }, function (err) {
+      console.log(err);
+    });
 
 
     /**
@@ -76,17 +94,23 @@ angular.module('myApp.home', ['ngRoute'])
     $scope.saveMarker = function () {
 
       $('#myModal').modal('hide');
+      this.markerList.push( this.marker );
+      showMarkerOnMap(this.marker);
 
+    }
+
+
+    $scope.focusMarker = function (marker) {
+      map.setView( [marker.lat, marker.lng] , 12);
+    }
+
+    let showMarkerOnMap = function (marker) {
       var dynamicMarker = L.ExtraMarkers.icon({
         icon: 'none',
-        markerColor: this.marker.color,
+        markerColor: marker.color,
         svg: true,
       });
-  
-
-      L.marker([this.marker.lat, this.marker.lng], { icon: dynamicMarker}).addTo(map).bindPopup(getMarkerDescription(this.marker))
-
-
+      L.marker([marker.lat, marker.lng], { icon: dynamicMarker }).addTo(map).bindPopup(getMarkerDescription(marker))
     }
 
 
@@ -95,7 +119,7 @@ angular.module('myApp.home', ['ngRoute'])
 
       let description = "<b> " + marker.name + " </b><br>"
 
-      description += marker.attributeList.map((attribute) => { return (attribute.key || "") + ": " + (attribute.value || "") + "<br>" }).join("")
+      if (marker.attributeList) description += marker.attributeList.map((attribute) => { return (attribute.key || "") + ": " + (attribute.value || "") + "<br>" }).join("")
 
       return description;
     }
