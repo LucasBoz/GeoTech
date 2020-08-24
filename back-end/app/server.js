@@ -11,6 +11,9 @@ app.use(function (req, res, next) {
     next();
 });
 
+/**
+ * SERVER CONFIG
+ */
 
 // Server port
 var HTTP_PORT = 8005
@@ -25,14 +28,21 @@ app.get("/", (req, res, next) => {
 });
 
 
+/**
+ * API endpoints
+ */
 
-// API endpoints
-app.post('/api/marker', async (req, res) => {
-    // const marker = await User.create(req.body);
-    res.json(user);
+ // Save marker
+app.post('/api/marker', (req, res) => {
+    console.log("POST");
+    // console.log(req.body);
+    res.json({});
 });
 
+
+// List all marker 
 app.get("/api/marker", (req, res, next) => {
+
 
     db.all("select * from marker", (err, rows) => {
 
@@ -41,16 +51,37 @@ app.get("/api/marker", (req, res, next) => {
             return;
         }
 
+        // rows.forEach(marker => {
+        //     let sql = "select * from attribute WHERE attribute.id_marker = " + marker.id; 
+        //     let teste = executeSql(sql); 
+        //     console.log("2");
+        //     console.log(teste);
+        // });
+        // console.log("3");
         // let markerList = rows.map((marker) => {
-
-        //     db.all("select * from attribute", (err, rows) => {
-
-        //         if (err) return marker;
-
-        //         return { ...marker, attributeList: rows }
-
+        //     let sql = "select * from attribute WHERE attribute.id_marker = " + marker.id; 
+        //     let attributesList = new Promise((resolve, reject) => {
+        //         DatabaseService.db.transaction(trans => {
+        //             trans.executeSql(
+        //                 sql,
+        //                 params,
+        //                 (db, results) => {
+        //                     let data;
+        //                     if (!resultsInsteadData) {
+        //                         data = ParserService.ItemsToArray(results);
+        //                     } else {
+        //                         data = results;
+        //                     }
+        //                     resolve(data);
+        //                 },
+        //                 error => {
+        //                     reject(error);
+        //                 },
+        //             );
+        //         });
         //     });
-
+        //     console.log(attributeList);
+        //     return { ...marker, attributeList: attributesList }
         // })
 
 
@@ -61,33 +92,11 @@ app.get("/api/marker", (req, res, next) => {
     });
 });
 
-app.get("/api/marker2", (req, res, next) => {
-
-    const sql = "SELECT * FROM marker; \
-    SELECT * from attribute \
-    INNER JOIN attribute ON marker.id = attribute.marker_id";
-
-
-    var params = []
-    db.all(sql, params, (err, rows) => {
-        if (err) {
-            res.status(400).json({ "error": err.message });
-            return;
-        }
-
-        console.log(rows);
-        res.json({
-            "message": "success",
-            "data": rows
-        })
-    });
-});
-
-
-
 
 
 // Default response for any other request
 app.use(function (req, res) {
     res.status(404);
 });
+
+
